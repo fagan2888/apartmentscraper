@@ -30,7 +30,8 @@ defmodule ApartmentScraper.Mixfile do
     [
       {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.1"},
       {:httpotion, "~> 2.1.0"},
-      {:floki, "~> 0.3.2"}
+      {:floki, "~> 0.3.2"},
+      {:calendar, "~> 0.6.8"},
     ]
   end
 end
