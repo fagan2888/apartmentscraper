@@ -1,0 +1,2 @@
+defmodule ApartmentScraper do
+end
