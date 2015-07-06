@@ -10,7 +10,7 @@ defmodule ApartmentScraper.Notifier do
     last_recorded = Enum.reduce(history, %{}, fn(entry, acc) ->
       {unit, history} = entry
       sorted_history = Enum.sort(history, fn(a, b) -> hd(b) > hd(a) end) # inverse sort
-      last_record = hd(history)
+      last_record = hd(sorted_history)
       [last_rent] = tl(last_record)
       Dict.put(acc, unit, last_rent)
     end)
@@ -57,7 +57,7 @@ defmodule ApartmentScraper.Notifier do
       Dict.put(acc, a.unit, {a, Dict.get(reasons, a.unit)})
     end)
     # TODO
-    send from: "rami.chowdhury@gmail.com", to: ["rami.chowdhury@gmail.com", "kathleenmburnett@gmail.com"], subject: "ApartmentScraper update", template: "notifications", data: annotated_apartments
+    send from: "rami.chowdhury@gmail.com", to: ["rami.chowdhury@gmail.com"], subject: "ApartmentScraper update", template: "notifications", data: annotated_apartments
   end
 
   def compose(email_settings) do
@@ -75,7 +75,12 @@ defmodule ApartmentScraper.Notifier do
 
   def send(email_settings) do
     email = compose email_settings
-    response = Mailer.send(email)
+    case Mailer.send(email) do
+      {:error, details} ->
+        IO.puts :stderr, "Could not send email: #{details}"
+      _ ->
+        nil # assume this is just fine
+    end
   end
 
 end

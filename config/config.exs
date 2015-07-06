@@ -26,10 +26,13 @@ use Mix.Config
 config :mailer,
   templates: "priv/templates",
   smtp_client: [
-    server: "mail.google.com",
+    server: "smtp.gmail.com",
+    port: 587,
     hostname: "localhost",
     transport: :smtp,
     username: "rami.chowdhury@gmail.com",
-    password: "One-time password",
-    tls: :always
+    password: System.get_env("GMAIL_PASSWORD"),
+    tls: :if_available,
+    ssl: :false,
+    retries: 2
   ]

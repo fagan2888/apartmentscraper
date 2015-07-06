@@ -1,8 +1,38 @@
 <html>
 	<head>
-		<title><%= @foo %></title>
+		<title>Apartment Scraper Update</title>
 	</head>
 	<body>
-		<p></p>
+		<p>Hey,</p>
+
+		<p>Something's changed in the scraped apartments, and I thought you might want to know.</p>
+
+		<p>Here's the latest:</p>
+		<table>
+			<tr>
+				<th scope="col">Reason</th>
+				<th scope="col">Unit</th>
+				<th scope="col">Beds</th>
+				<th scope="col">Baths</th>
+				<th scope="col">Sq Ft</th>
+				<th scope="col">Rent</th>
+				<th scope="col">Images</th>
+			</tr>
+			<%= for k <- Dict.keys(assigns) do %> <% {a, reason} = Dict.get(assigns, k) %>
+			<tr>
+				<td><%= if reason do %><strong><%= reason %></strong><% end %></td>
+				<td><%= a.unit %></td>
+				<td><%= a.beds %></td>
+				<td><%= a.baths %></td>
+				<td><%= a.sqft %></td>
+				<td><%= Float.to_string a.rent, decimals: 2 %></td>
+				<td><a href='<%= Keyword.get a.images, :small %>'>small</a>&nbsp;
+						<a href='<%= Keyword.get a.images, :large %>'>large</a></td>
+			</tr>
+			<% end %>
+		</table>
+
+		<p>Have a good day!<br>
+				Apartment Scraper</p>
 	</body>
 </html>

@@ -1,1 +1,15 @@
-<%= @foo %>
+Hey,
+
+Something's changed in the scraped apartments, and I thought you might want to know.
+
+Here's the latest:
+<%= for k <- Dict.keys(assigns) do %> <% {a, reason} = Dict.get(assigns, k) %>
+  Unit: <%= a.unit %>
+  Beds: <%= a.beds %>  Baths: <%= a.baths %>
+  Sq Ft: <%= a.sqft %>
+  Rent: $<%= Float.to_string a.rent, decimals: 2 %>
+  <%= if reason do %> **Reason**: <%= reason %> <% end %>
+<% end %>
+
+Have a good day!
+Apartment Scraper
