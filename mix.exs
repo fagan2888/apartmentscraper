@@ -32,6 +32,7 @@ defmodule ApartmentScraper.Mixfile do
       {:httpotion, "~> 2.1.0"},
       {:floki, "~> 0.3.2"},
       {:calendar, "~> 0.6.8"},
+      {:exjsx, "~> 3.1.0"},
     ]
   end
 end
