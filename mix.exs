@@ -33,6 +33,8 @@ defmodule ApartmentScraper.Mixfile do
       {:floki, "~> 0.3.2"},
       {:calendar, "~> 0.6.8"},
       {:exjsx, "~> 3.1.0"},
+      {:timex, github: "bitwalker/timex", tag: "0.14.0", override: true},
+      {:mailer, github: "antp/mailer"},
     ]
   end
 end

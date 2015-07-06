@@ -1,8 +1,12 @@
 %{"calendar": {:hex, :calendar, "0.6.8"},
   "exjsx": {:hex, :exjsx, "3.1.0"},
   "floki": {:hex, :floki, "0.3.2"},
+  "gen_smtp": {:git, "git://github.com/vagabond/gen_smtp.git", "fb667c6ed875be1ae8d5ea0fa74eb9043fd7ecc7", []},
   "httpotion": {:hex, :httpotion, "2.1.0"},
   "ibrowse": {:git, "git://github.com/cmullaparthi/ibrowse.git", "d2e369ff42666c3574b8b7ec26f69027895c4d94", [tag: "v4.1.1"]},
+  "iconv": {:git, "git://github.com/antp/erlang-iconv.git", "7ad5ebff53a75bb3d4ffa6957e20c966c6032949", []},
   "jsx": {:hex, :jsx, "2.4.0"},
+  "mailer": {:git, "git://github.com/antp/mailer.git", "4e8b8824657ef47c3dd307c2ee9d52fbffad9f91", []},
   "mochiweb": {:hex, :mochiweb, "2.12.2"},
+  "timex": {:git, "git://github.com/bitwalker/timex.git", "3d1b3bf6bf49663b693ceb465297aca0dc170420", [tag: "0.14.0"]},
   "tzdata": {:hex, :tzdata, "0.1.6"}}

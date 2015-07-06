@@ -53,7 +53,29 @@ defmodule ApartmentScraper.Notifier do
         IO.puts "\t*Reason*: #{reasons[a.unit]}"
       end
     end)
+    annotated_apartments = Enum.reduce(apartments, %{}, fn(a, acc) ->
+      Dict.put(acc, a.unit, {a, Dict.get(reasons, a.unit)})
+    end)
+    # TODO
+    send from: "rami.chowdhury@gmail.com", to: ["rami.chowdhury@gmail.com", "kathleenmburnett@gmail.com"], subject: "ApartmentScraper update", template: "notifications", data: annotated_apartments
   end
 
+  def compose(email_settings) do
+    from = email_settings[:from]
+    to_list = email_settings[:to]
+    subject = email_settings[:subject]
+    template = email_settings[:template]
+    data = email_settings[:data]
+    email = Mailer.compose_email from, hd(to_list), subject, template, data
+    Enum.map(tl(to_list), fn(addr) ->
+      Mailer.Email.Multipart.add_to email, addr
+    end)
+    email
+  end
+
+  def send(email_settings) do
+    email = compose email_settings
+    response = Mailer.send(email)
+  end
 
 end

@@ -22,3 +22,14 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+
+config :mailer,
+  templates: "priv/templates",
+  smtp_client: [
+    server: "mail.google.com",
+    hostname: "localhost",
+    transport: :smtp,
+    username: "rami.chowdhury@gmail.com",
+    password: "One-time password",
+    tls: :always
+  ]
