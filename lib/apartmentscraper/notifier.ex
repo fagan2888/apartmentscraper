@@ -8,8 +8,12 @@ defmodule ApartmentScraper.Notifier do
       Dict.put(acc, a.unit, a.rent)
     end)
     last_recorded = Enum.reduce(history, %{}, fn(entry, acc) ->
-      {unit, history} = entry
-      sorted_history = Enum.sort(history, fn(a, b) -> hd(b) > hd(a) end) # inverse sort
+      {unit, unit_history} = entry
+      sorted_history = Enum.sort(unit_history, fn(a, b) ->
+        date_a = hd(a)
+        date_b = hd(b)
+        date_b < date_a
+      end) # inverse sort
       last_record = hd(sorted_history)
       [last_rent] = tl(last_record)
       Dict.put(acc, unit, last_rent)
@@ -48,7 +52,7 @@ defmodule ApartmentScraper.Notifier do
     Enum.map(apartments, fn(a) ->
       IO.puts "\tUnit: #{a.unit}\tBeds: #{a.beds}\tBaths: #{a.baths}"
       IO.puts "\t\tSq Ft: #{a.sqft}"
-      IO.puts "\t\tRent: $#{a.rent}"
+      IO.puts "\t\tRent: $#{trunc a.rent}"
       if Dict.get(reasons, a.unit) do
         IO.puts "\t*Reason*: #{reasons[a.unit]}"
       end

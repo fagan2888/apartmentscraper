@@ -1,6 +1,7 @@
 defmodule ApartmentScraper.Persister do
   alias Calendar.DateTime
   # TODO: implement this as a separate server process.
+  # TODO: maybe start using mnesia?
   # In the meantime, use this as a namespace for writer
   # functions
 
@@ -13,7 +14,8 @@ defmodule ApartmentScraper.Persister do
 
   defp encode_rent_entry(entry) do
     [datetime, rent] = entry
-    [DateTime.Format.unix(datetime), rent]
+    # Format the date as a timestamp, truncate rent to the dollar
+    [DateTime.Format.unix(datetime), trunc(rent)]
   end
 
   defp reformat_history_map(map, entry_formatter) do

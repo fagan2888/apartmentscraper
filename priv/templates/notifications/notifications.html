@@ -25,7 +25,7 @@
 				<td><%= a.beds %></td>
 				<td><%= a.baths %></td>
 				<td><%= a.sqft %></td>
-				<td><%= Float.to_string a.rent, decimals: 2 %></td>
+				<td>$<%= trunc a.rent %></td>
 				<td><a href='<%= Keyword.get a.images, :small %>'>small</a>&nbsp;
 						<a href='<%= Keyword.get a.images, :large %>'>large</a></td>
 			</tr>

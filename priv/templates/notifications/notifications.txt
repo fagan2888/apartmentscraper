@@ -7,7 +7,7 @@ Here's the latest:
   Unit: <%= a.unit %>
   Beds: <%= a.beds %>  Baths: <%= a.baths %>
   Sq Ft: <%= a.sqft %>
-  Rent: $<%= Float.to_string a.rent, decimals: 2 %>
+  Rent: $<%= trunc a.rent %>
   <%= if reason do %> **Reason**: <%= reason %> <% end %>
 <% end %>
 
